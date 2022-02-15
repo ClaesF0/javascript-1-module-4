@@ -17,14 +17,29 @@ async function fetchGame() {
 
     try {
         const response = await fetch(url);
+        const details = await response.json();
+        //console.log(details);
 
+        //1. Name
+        //2. image background image
+        //3. details description row
+        //4. release date
+        //these are the four things we are going to put in our innerhtml container
+
+        createHTML(details);
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
     }
 
 }
+fetchGame(); 
 
-
-fetchGame();
-
+function createHTML (details){
+    container.innerHTML = `
+<h1 class="details-title">name: ${details.title}</h1>
+<div class="details-image" style = "background-image: url('${details.background_image}')"></div>
+<p class="details-description">description: ${details.description}</p>
+<time class="details-date">Released: ${details.released}</time>
+`
+}

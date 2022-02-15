@@ -17,10 +17,19 @@ const url = "https://api.rawg.io/api/games?key=54582cd735a340b89b17702eae51578b"
 async function callApi() {
     const response = await fetch(url);
     const JSONResponse = await response.json();
-
     console.log(JSONResponse);
+    const results = JSONResponse.results;
+    console.log('results: ', results);
+/*
+    results.forEach((game)=>{
+        resultsContainer.innerHTML += `<div>${game.name}</div>` 
+    })
+    */
+    
 
-
+for(let i = 0; i < results.length; i++){
+    resultsContainer.innerHTML += `<div>${results[i].name}</div>` 
+}
 }
 
 callApi().then();
